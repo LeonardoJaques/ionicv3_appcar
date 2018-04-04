@@ -29,17 +29,25 @@
           <ion-icon name="options"></ion-icon>
           ACESSÓRIOS      
       </ion-item-divider>
-      <ion-item>Acessório 1</ion-item>
-      <ion-item>Acessório 2</ion-item>
- 
+           
+        <ion-item *ngFor="let acessorio of acessorios">
+         <ion-label>
+              <h2>{{ acessorio.nome }}</h2>
+              <h2>R$ {{ acessorio.preco }}</h2>
+          </ion-label>
+          <ion-toggle #toggle color="secondary" (ionChange)="atualizaTotal(toggle.checked, acessorio)">
+
+          </ion-toggle>
+        </ion-item>
+        
   </ion-item-group>
 
   <ion-item-divider color = "light">
-      <span item-right>TOTAL: R$1000</span> 
+      <span item-right>TOTAL: R$ {{ precoTotal }}</span> 
   </ion-item-divider>
   
-  <ion-fab top right edge>
-      <button ion-fab min >
+  <ion-fab top right edge mini>
+      <button ion-fab mini >
             <ion-icon name="arrow-dropright" ></ion-icon>
       </button>
   </ion-fab>

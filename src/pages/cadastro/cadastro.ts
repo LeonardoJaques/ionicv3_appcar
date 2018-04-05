@@ -4,6 +4,7 @@ import { Carro } from '../../modelos/carro';
 import { AgendamentosServiceProvider } from '../../providers/agendamentos-service/agendamentos-service';
 import { HomePage } from '../home/home';
 import { Agendamento } from '../../modelos/agendamento';
+import { AgendamentoDaoProvider } from '../../providers/agendamento-dao/agendamento-dao';
 
 
 @IonicPage()
@@ -21,17 +22,19 @@ export class CadastroPage {
   public email: string = '';
   public data:string = new Date().toISOString();
   private _alerta : Alert;
+
   
 
   constructor(public navCtrl: NavController,
        public navParams: NavParams,
        private _alertCrtl: AlertController,
-       private _agendamentosService: AgendamentosServiceProvider ) {
-         
+       private _agendamentosService: AgendamentosServiceProvider,
+       private _agendamentoDao: AgendamentoDaoProvider
+
+      ) {
 
          this.carro = this.navParams.get('carroSelecionado');
          this.precoTotal = this.navParams.get('precoTotal');
-         
          
   }
   agenda(){
@@ -50,7 +53,12 @@ export class CadastroPage {
       enderecoCliente: this.endereco,
       emailCliente: this.email,
       modeloCarro: this.carro.nome,
-      precoTotal: this.precoTotal
+      precoTotal: this.precoTotal,
+      confirmado: false,
+      enviado: false,
+      data: this.data
+
+      
     };
     
     this._alerta = this._alertCrtl.create({
@@ -60,15 +68,24 @@ export class CadastroPage {
         handler: () => {
           this.navCtrl.setRoot(HomePage)
         }
-      }
-
-      ]
+      }]
     });
     
     let mensagem ='';
-
-
-  this._agendamentosService.agenda(agendamento)
+    this._agendamentoDao.ehDuplicado(agendamento).mergeMap(ehDuplicado => {
+      if(ehDuplicado){
+        throw new Error ('Agendamento Existente!')
+      }
+      return this._agendamentosService.agenda(agendamento)
+    })
+      .mergeMap((valor) => {
+        
+        let Observable = this._agendamentoDao.salva(agendamento);  
+        if(valor instanceof Error) {
+           throw valor; 
+        }
+        return Observable;
+      })
       .finally(
         ()=> {
           this._alerta.setSubTitle(mensagem);
@@ -76,17 +93,10 @@ export class CadastroPage {
         }
       )
       .subscribe(
-      () => {
-        mensagem='Agendamento realizado!'
-      },
-        
-      () => {
-        mensagem='Falha no agendamento! Tente novamente mais tarde.';
-        
-
-      }
+      () => mensagem='Agendamento realizado!',
+      (err: Error) => mensagem = err.message
     );
   }
-
+ 
 
 }

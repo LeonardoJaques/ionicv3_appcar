@@ -76,7 +76,7 @@ export class CadastroPage {
       if(ehDuplicado){
         throw new Error ('Agendamento Existente!')
       }
-      return this._agendamentosService.agenda(agendamento)
+      return this._agendamentosService.agenda(agendamento);
     })
       .mergeMap((valor) => {
         

@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../pages/home/home';
 import { ListaAgendamentosPage } from '../pages/lista-agendamentos/lista-agendamentos';
+import { LoginPage } from '../pages/login/login';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ListaAgendamentosPage } from '../pages/lista-agendamentos/lista-agendam
 export class MyApp { 
   
   @ViewChild(Nav) public nav: Nav;
-  rootPage:any =  HomePage;
+  rootPage:any =  LoginPage;
   public paginas = [
     { titulo:'Agendamentos', componente: ListaAgendamentosPage.name, icone: 'calendar' }
   ];

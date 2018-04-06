@@ -20,6 +20,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
+import { ApiServiceProvider } from '../providers/api-service/api-service';
 
 
 
@@ -54,7 +55,8 @@ import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-
     CarrosServiceProvider,
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
-    UsuariosServiceProvider
+    UsuariosServiceProvider,
+    ApiServiceProvider
   ]
 })
 export class AppModule {}

@@ -1,3 +1,9 @@
+Node version: v9.11.0
+
+Cordova version: 8.0.0
+
+Config.xml file: 
+
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MyApp</name>
@@ -83,7 +89,30 @@
     <plugin name="cordova-plugin-vibration" spec="^2.1.6" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
-    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
+    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
     <engine name="android" spec="7.0.0" />
 </widget>
+
+
+Plugins: 
+
+cordova-plugin-camera,cordova-plugin-compat,cordova-plugin-datepicker,cordova-plugin-device,cordova-plugin-ionic-keyboard,cordova-plugin-ionic-webview,cordova-plugin-splashscreen,cordova-plugin-vibration,cordova-plugin-whitelist,onesignal-cordova-plugin
+
+Android platform:
+
+*************************************************************************
+The "android" command is deprecated.
+For manual SDK, AVD, and project management, please use Android Studio.
+For command-line tools, use tools/bin/sdkmanager and tools/bin/avdmanager
+*************************************************************************
+Running /usr/local/Caskroom/android-sdk/3859397/tools/bin/avdmanager list target
+
+Available Android targets:
+----------
+id: 1 or "android-26"
+     Name: Android API 26
+     Type: Platform
+     API level: 26
+     Revision: 2
+

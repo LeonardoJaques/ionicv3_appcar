@@ -3,15 +3,14 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClientModule } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
+import { HttpClientModule } from '@angular/common/http';
 import { CarrosServiceProvider } from '../providers/carros-service/carros-service';
 import { AgendamentosServiceProvider } from '../providers/agendamentos-service/agendamentos-service';
-import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
-import { IonicStorageModule } from '@ionic/storage'
+
+import { IonicStorageModule } from '@ionic/storage';
 
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/do';
@@ -19,11 +18,13 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/of';
+import { AgendamentoDaoProvider } from '../providers/agendamento-dao/agendamento-dao';
+import { LoginPage } from '../pages/login/login';
 import { UsuariosServiceProvider } from '../providers/usuarios-service/usuarios-service';
-import { ApiServiceProvider } from '../providers/api-service/api-service';
-
-
-
+import { Vibration } from '@ionic-native/vibration';
+import { DatePicker } from '@ionic-native/date-picker';
+import { Camera } from '@ionic-native/camera';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ApiServiceProvider } from '../providers/api-service/api-service';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot({
-      name: 'odaracar',
+      name: 'aluracar',
       storeName: 'agendamentos',
       driverOrder: ['indexeddb']
     })
@@ -46,7 +47,6 @@ import { ApiServiceProvider } from '../providers/api-service/api-service';
     MyApp,
     HomePage,
     LoginPage
-    
   ],
   providers: [
     StatusBar,
@@ -56,7 +56,10 @@ import { ApiServiceProvider } from '../providers/api-service/api-service';
     AgendamentosServiceProvider,
     AgendamentoDaoProvider,
     UsuariosServiceProvider,
-    ApiServiceProvider
+    Vibration,
+    DatePicker,
+    Camera,
+    OneSignal
   ]
 })
 export class AppModule {}

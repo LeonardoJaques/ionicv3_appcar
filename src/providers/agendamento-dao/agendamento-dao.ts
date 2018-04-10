@@ -25,6 +25,13 @@ export class AgendamentoDaoProvider {
 
   }
 
+  recupera(agendametoId){
+       let promise = this._storage
+                      .get(agendametoId);
+
+    return Observable.fromPromise(promise);
+  }
+
   ehDuplicado(agendamento: Agendamento){
     let chave = this._geraChave(agendamento);
     let promise = this._storage
@@ -45,5 +52,6 @@ export class AgendamentoDaoProvider {
     
     return Observable.fromPromise(promise);
   }
+
 
 }

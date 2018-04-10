@@ -7,7 +7,7 @@ import { Agendamento } from '../../modelos/agendamento';
 @Injectable()
 export class AgendamentosServiceProvider {
 
-  private _url ='http://localhost:8080/api/'
+  private _url ='http://seulocalhost/api/'
   constructor(public _http: HttpClient) {
   }
 
